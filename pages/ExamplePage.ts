@@ -12,4 +12,3 @@ export class ExamplePage {
     await this.page.goto(this.url);
   }
 }
-}
