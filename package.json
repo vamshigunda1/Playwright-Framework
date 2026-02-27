@@ -1,0 +1,30 @@
+{
+  "name": "playwright-framework",
+  "version": "1.0.0",
+  "description": "A Playwright test automation framework with industry best practices.",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "codegen": "playwright codegen"
+  },
+  "keywords": [
+    "playwright",
+    "testing",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.7.0",
+    "@playwright/test": "^1.35.0",
+    "@types/node": "^25.3.2",
+    "allure-playwright": "^3.5.0",
+    "cucumber-tsflow": "^4.6.1",
+    "dotenv": "^17.3.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "winston": "^3.19.0"
+  }
+}
