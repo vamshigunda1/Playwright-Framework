@@ -56,6 +56,24 @@ npm run test:debug        # Interactive debug mode
 npm run codegen           # Playwright code generation tool
 ```
 
+### BDD with Cucumber
+
+The framework supports Gherkin-style tests using Cucumber. Feature files go in the `features/` directory with step definitions under `features/step_definitions`.
+
+Install dependencies:
+```bash
+npm install -D @cucumber/cucumber cucumber-tsflow
+```
+
+Run BDD scenarios:
+```bash
+npm run bdd                # executes cucumber-js
+# or directly:
+npx cucumber-js
+```
+
+An example feature (`features/amazon_search.feature`) and steps are already included.
+
 ### Viewing Reports
 
 ```bash
@@ -134,6 +152,43 @@ logs/
 Console output shows color-coded levels: `info`, `warn`, `error`, `debug`.
 
 ## Advanced Configuration
+### BDD with Cucumber
+
+The framework supports Gherkin-style tests using Cucumber. Feature files go in the `features/` directory and step definitions live under `features/step_definitions`.
+
+Install the dependencies:
+```bash
+npm install -D @cucumber/cucumber cucumber-tsflow
+```
+
+Run BDD scenarios with:
+```bash
+npm run bdd                # uses cucumber.js defined in package.json
+# or directly:
+npx cucumber-js
+```
+
+Example feature: `features/amazon_search.feature`
+```gherkin
+Feature: Amazon search
+  Scenario: Search for iPhone 17 Pro Max
+    Given I am on the Amazon homepage
+    When I search for "iPhone 17 Pro Max"
+    Then the product title should contain "iPhone 17 Pro Max"
+```
+
+Steps are implemented in TypeScript and can reuse existing page objects:
+
+```ts
+// features/step_definitions/amazon.steps.ts
+import { Given, When, Then } from '@cucumber/cucumber';
+// .... (see file above) ...
+```
+
+The `cucumber.js` config automatically loads `ts-node` so you can write steps in TS.
+
+Playwright’s normal runner is unaffected – use `npm test` for non-BDD specs.
+
 
 ### Retry Strategy
 Tests automatically retry on failure (configurable via `RETRIES` env var). Each action in BasePage also implements retry logic with exponential backoff.
@@ -162,6 +217,7 @@ GitHub Actions workflow in `.github/workflows/playwright.yml`:
 - Auto-installs Node, Playwright, and browsers
 - Runs tests in parallel
 - Uploads HTML reports as artifacts
+- Optionally emails the report using SMTP settings from `.env` via the `utils/email.ts` helper
 
 ## Best Practices
 
@@ -171,6 +227,7 @@ GitHub Actions workflow in `.github/workflows/playwright.yml`:
 4. **Modular Tests** - Keep tests focused and modular
 5. **Environment Config** - Use `.env` for environment-specific settings
 6. **Retry Wisely** - Use built-in retry logic; avoid manual waits
+7. **Email Reports** - Configure SMTP and send post-run notifications
 
 ## Troubleshooting
 

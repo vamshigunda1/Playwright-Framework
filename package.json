@@ -7,7 +7,9 @@
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
-    "codegen": "playwright codegen"
+    "codegen": "playwright codegen",
+    "bdd": "cucumber-js",
+    "send-report": "ts-node scripts/send-report.ts"
   },
   "keywords": [
     "playwright",
@@ -20,9 +22,11 @@
     "@cucumber/cucumber": "^12.7.0",
     "@playwright/test": "^1.35.0",
     "@types/node": "^25.3.2",
+    "@types/nodemailer": "^7.0.11",
     "allure-playwright": "^3.5.0",
     "cucumber-tsflow": "^4.6.1",
     "dotenv": "^17.3.1",
+    "nodemailer": "^8.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "winston": "^3.19.0"
