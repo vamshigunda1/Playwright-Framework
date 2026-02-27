@@ -22,7 +22,7 @@ jobs:
           # copy example env so config module has values
           if [ -f .env.example ]; then cp .env.example .env; fi
           # ensure HEADLESS is false for debugging if needed
-          echo "HEADLESS=false" >> .env
+          echo "HEADLESS=true" >> .env
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
       - name: Run tests
